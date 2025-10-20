@@ -42,3 +42,5 @@ logs/
 
 # Submodules (handle separately)
 delegation-framework/
+*.tar.gz
+*.zip
