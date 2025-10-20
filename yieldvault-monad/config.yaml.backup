@@ -1,0 +1,25 @@
+name: yieldvault-monad-indexer
+description: Monad Testnet ERC20/Delegation Events
+
+# Optimizations for fast single-chain sync
+unordered_multichain_mode: true
+preload_handlers: true
+rollback_on_reorg: true
+
+# Raw events for debugging recent actions
+raw_events: true
+
+contracts:
+  - name: ERC20  # Matches template—fixes import/export mismatch
+    handler: src/EventHandlers.ts
+    events:
+      - event: Transfer(address indexed from, address indexed to, uint256 value)
+      - event: Approval(address indexed owner, address indexed spender, uint256 value)
+
+networks:
+  - id: 10143  # Monad Testnet
+    start_block: 0  # Auto-detects deploy block (~1M for USDC)—<1 min sync
+    contracts:
+      - name: ERC20
+        address:
+          - 0x62534e4bbd6d9ebac0ac99aeaa0aa48e56372df0  # Live bridged USDC (83k holders, 1.2M+ txs)

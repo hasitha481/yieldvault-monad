@@ -1,0 +1,40 @@
+name: yieldvault-monad-indexer
+description: Monad Testnet ERC20/Delegation Events
+
+unordered_multichain_mode: true
+preload_handlers: true
+rollback_on_reorg: true
+raw_events: true
+
+contracts:
+  - name: ERC20
+    handler: src/EventHandlers.ts
+    events:
+      - event: Transfer(address indexed from, address indexed to, uint256 value)
+      - event: Approval(address indexed owner, address indexed spender, uint256 value)
+  
+  - name: ERC20TransferAmountEnforcer
+    handler: src/EventHandlers.ts
+    events:
+      - event: CaveatEnforced(address indexed delegationManager, bytes32 indexed delegationHash, bytes terms)
+  
+  - name: ERC20PeriodTransferEnforcer
+    handler: src/EventHandlers.ts
+    events:
+      - event: CaveatEnforced(address indexed delegationManager, bytes32 indexed delegationHash, bytes terms)
+
+networks:
+  - id: 10143
+    start_block: 44287380
+    contracts:
+      - name: ERC20
+        address:
+          - 0x62534e4bbd6d9ebac0ac99aeaa0aa48e56372df0
+      
+      - name: ERC20TransferAmountEnforcer
+        address:
+          - 0xE7110eE7c6F09Fdb622477b1e312Aeb2361d7AEa
+      
+      - name: ERC20PeriodTransferEnforcer
+        address:
+          - 0x24482d06b4aa199c082671Fa82fEAF7dbd2C1305

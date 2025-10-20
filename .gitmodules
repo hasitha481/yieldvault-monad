@@ -1,0 +1,9 @@
+[submodule "contracts/lib/forge-std"]
+	path = contracts/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "yieldvault-monad/lib/forge-std"]
+	path = yieldvault-monad/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "yieldvault-monad/lib/openzeppelin-contracts"]
+	path = yieldvault-monad/lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
